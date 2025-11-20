@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Rimuove il background di default del body per permettere la trasparenza */
+body, html, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  /* CRUCIALE: !important sovrascrive lo stile di default del browser (bianco) */
+  background-color: transparent !important;
+  
+  /* Impedisce che appaiano barre di scorrimento se il contenuto sfora di 1px */
+  overflow: hidden; 
+  
+  /* Disabilita la selezione del testo (sembra più nativo) */
+  user-select: none; 
+  
+  /* Font di sistema pulito */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Permetti la selezione del testo solo dentro gli input/textarea */
+input, textarea {
+  user-select: text;
+}

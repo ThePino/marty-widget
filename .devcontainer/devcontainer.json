@@ -1,0 +1,37 @@
+{
+  "name": "Electron Time Tracker Env",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Diciamo a VS Code di trattare tutti i CSS come PostCSS
+        // Questo abilita la sintassi corretta per @tailwind senza errori
+        "files.associations": {
+          "*.css": "postcss"
+        }
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "formulahendry.auto-close-tag",
+        "dsznajder.es7-react-js-snippets",
+        "bradlc.vscode-tailwindcss",
+        // NUOVA ESTENSIONE: Supporto sintassi PostCSS
+        "csstools.postcss" 
+      ]
+    }
+  },
+  "mounts": [
+    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached"
+  ],
+  "runArgs": [
+    "--net=host",
+    "-e", "DISPLAY=${env:DISPLAY}",
+    "--security-opt", "seccomp=unconfined"
+  ],
+  
+  "postCreateCommand": "npm install",
+  "remoteUser": "node"
+}

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- L'icona qui è per la tab del browser in dev mode, non per la tray -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Content Security Policy di base per sviluppo: permette script locali e connessioni ws -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' ws: http: data:;">
+    <title>Time Tracker</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Questo è il collegamento magico che carica React -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
