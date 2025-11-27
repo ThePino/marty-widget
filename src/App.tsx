@@ -60,11 +60,6 @@ const App: React.FC = () => {
 
   const activeLabel = labels.find(l => l.id === activeLabelId) || labels[0];
 
-  // Interazione con Electron
-  const handleMove = (corner: string) => {
-    getElectron().moveCorner(corner);
-  };
-
   const handleCreateLabel = () => {
     const name = prompt("Nome nuova etichetta:");
     if (name) {
@@ -98,13 +93,6 @@ const App: React.FC = () => {
         <div className="flex items-center justify-between px-3 py-2 bg-white/5 cursor-move select-none" style={{ WebkitAppRegion: 'drag' } as any}>
           <GripHorizontal className="text-gray-400 w-4 h-4" />
           
-          {/* Pulsanti Angoli (Non draggabili per poter essere cliccati) */}
-          <div className="flex space-x-1 no-drag" style={{ WebkitAppRegion: 'no-drag' } as any}>
-            <button onClick={() => handleMove('top-left')} className="w-2 h-2 bg-gray-600 hover:bg-blue-400 rounded-full transition-colors" title="Top Left" />
-            <button onClick={() => handleMove('top-right')} className="w-2 h-2 bg-gray-600 hover:bg-blue-400 rounded-full transition-colors" title="Top Right" />
-            <button onClick={() => handleMove('bottom-left')} className="w-2 h-2 bg-gray-600 hover:bg-blue-400 rounded-full transition-colors" title="Bottom Left" />
-            <button onClick={() => handleMove('bottom-right')} className="w-2 h-2 bg-gray-600 hover:bg-blue-400 rounded-full transition-colors" title="Bottom Right" />
-          </div>
         </div>
 
         {/* --- CONTENUTO --- */}

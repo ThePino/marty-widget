@@ -5,7 +5,6 @@ import Store from 'electron-store';
 
 // SETUP LINUX/DOCKER
 app.commandLine.appendSwitch('no-sandbox');
-app.commandLine.appendSwitch('disable-gpu');
 app.commandLine.appendSwitch('enable-transparent-visuals');
 
 const store = new Store();
@@ -28,6 +27,8 @@ function createWidgetWindow() {
     alwaysOnTop: true,
     skipTaskbar: true,
     resizable: false,
+    type: 'toolbar',
+    visualEffectState: 'active',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
@@ -93,23 +94,6 @@ function createTray() {
     console.error("Errore critico creazione Tray:", e); 
   }
 }
-
-ipcMain.on('move-corner', (event, corner) => {
-  if (!widgetWindow) return;
-  const { workArea } = screen.getPrimaryDisplay();
-  const { width, height } = workArea;
-  const [winW, winH] = widgetWindow.getSize();
-  const padding = 20;
-  let x = padding, y = padding;
-
-  switch (corner) {
-    case 'top-left': x = workArea.x + padding; y = workArea.y + padding; break;
-    case 'top-right': x = workArea.x + width - winW - padding; y = workArea.y + padding; break;
-    case 'bottom-left': x = workArea.x + padding; y = workArea.y + height - winH - padding; break;
-    case 'bottom-right': x = workArea.x + width - winW - padding; y = workArea.y + height - winH - padding; break;
-  }
-  widgetWindow.setPosition(Math.round(x), Math.round(y), true);
-});
 
 app.whenReady().then(() => {
   setTimeout(() => {
