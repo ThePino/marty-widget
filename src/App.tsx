@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Play, Pause, GripHorizontal, Plus, ChevronDown, Monitor } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { IElectronAPI } from '@my-electron/ipc-interface';
 
 // Funzione helper per unire le classi Tailwind
 function cn(...inputs: (string | undefined | null | false)[]) {
@@ -15,8 +16,7 @@ interface Label {
 }
 
 // Mock per l'ambiente di browser (quando non gira in Electron)
-const mockElectron = {
-  moveCorner: (corner: string) => console.log(`[Electron] Move to ${corner}`),
+const mockElectron: IElectronAPI = {
   setIgnoreMouse: (ignore: boolean) => console.log(`[Electron] Ignore mouse: ${ignore}`),
   saveTimeLog: async (data: any) => console.log(`[Electron] Saving log`, data)
 };
