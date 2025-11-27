@@ -16,6 +16,8 @@ export default defineConfig(({ command }) => ({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      // AGGIUNTA QUI: Mappa @my-electron alla cartella electron nella root
+      '@my-electron': path.resolve(__dirname, 'electron'),
     },
   },
   

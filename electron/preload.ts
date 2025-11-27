@@ -1,6 +1,9 @@
 import { contextBridge, ipcRenderer } from 'electron';
+import { IElectronAPI } from './ipc-interface'; // Import relativo
 
-contextBridge.exposeInMainWorld('electronAPI', {
-  setIgnoreMouse: (ignore: boolean) => ipcRenderer.send('set-ignore-mouse', ignore),
-  saveTimeLog: (data: any) => ipcRenderer.invoke('save-time-log', data) 
-});
+const api: IElectronAPI = {
+  setIgnoreMouse: (ignore) => ipcRenderer.send('set-ignore-mouse', ignore),
+  saveTimeLog: (data) => ipcRenderer.invoke('save-time-log', data),
+};
+
+contextBridge.exposeInMainWorld('electronAPI', api);
