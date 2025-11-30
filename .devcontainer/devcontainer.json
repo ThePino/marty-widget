@@ -32,6 +32,6 @@
     "--security-opt", "seccomp=unconfined"
   ],
   
-  "postCreateCommand": "npm install",
+  "postCreateCommand": "npm install && npm run compile:electron",
   "remoteUser": "node"
 }
